@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+<div class="">
+  <div class="container py-5">
+   <div class="row">
+    <div class="col-md-6  offset-md-3">
+      <h1 class="text-center py-3 add">
+        Add Image
+      </h1>
+    </div>
+   </div>
+  </div>
+</div>
+<div class="container my-5 ">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="custom-card custom-card-add">
+        <div class="">
+          <h1 class="text-center mb-3">Add New Image</h1>
+          <p class="text-center">
+            Render Your Favourite Images to experience the best experience
+          </p>
+        </div>
+        <div>
+          
+          <form
+          method="POST"
+          enctype="multipart/form-data"
+          class="mb-5">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            <label for="">Image name </label> 
+            <input type="" class="form-control input-lg shadow-none" name="name" required /> 
+          </div>
+          <div class="form-group mb-3">
+            <label for="">Description </label>
+            <input type="" class="form-control input-lg shadow-none" name="description" required />
+          </div>
+        
+          <div class="form-group mb-3">
+            <label for="file">Select image file</label>
+            <input type="file" class="form-control input-lg shadow-none" name="photo" required />
+        </div>
+          <button class="btn mx-5 btn-outline-success shadow-none mt-3">UPLOAD</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+{% endblock%}
