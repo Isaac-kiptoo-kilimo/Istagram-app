@@ -5,8 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
-decouple = "*"
 dj-database-url = "*"
+python-decouple = "*"
+psycopg2 = "*"
+pillow = "*"
 
 [dev-packages]
 
