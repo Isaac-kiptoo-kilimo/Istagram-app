@@ -7,7 +7,8 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    return render(request,'pages/index.html')
+    image=Image.objects.all()
+    return render(request,'pages/index.html',{'images':image})
 
 def addimage(request):
     

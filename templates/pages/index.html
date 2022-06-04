@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-center text-warning">Welcome to Instagram clone app</h1>
+<div class="container">
+    <h1 class="text-center text-warning">Welcome to Instagram clone app</h1>
+    <div class="row">
+        {% for image in images %}
+        <div class="col-md-4">
+           <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}">
+           {{image.description}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
