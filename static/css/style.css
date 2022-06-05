@@ -90,4 +90,6 @@ body{
 }
 a{
     text-decoration: none;
+    color: #139bf6;
+    font-weight: 800;
 }
