@@ -10,3 +10,10 @@ body{
     display: flex;
     justify-content: space-around;
 }
+.navborder{
+    border-bottom: 1px solid #d5cfcf;
+}
+.navbar form input{
+    background-color: #EFEFEF;
+    border: none;
+}
