@@ -8,27 +8,44 @@
                     <div class="text-center">
                         <h3 id="form-title tex-dark">Instagram</h3>
                         <p class="text-secondary">Sign up to see photos and <br> videos from your friends.</p>
+
+                    </div>
+                    <div>
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="p-2 alert alert-danger">
+                            {{message}}
+                        </div>
+                        {% else %}
+                        <div class="p-2 alert alert-{{message.tags}}">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="d-flex justify-content-center form_container text-secondary">
         
                         <form method="POST" action="">
                             {% csrf_token %}
                             <div class="input-group mb-2">
-                                
-                                {{form.username}}
+                              <input type="text" class="form-control shadow-none input-lg" name="email-phone" placeholder="Email or Phone Number">
                             </div>
                             <div class="input-group mb-2">
-                               
-                                {{form.email}}
+                                <input type="text" class="form-control shadow-none input-lg" name="fullname" placeholder="Fullname">
+                                
                             </div>
                             
                             <div class="input-group mb-2">
                                
-                                {{form.password1}}
+                                <input type="text" class="form-control shadow-none input-lg" name="username" placeholder="Username">
                             </div>
                             <div class="input-group mb-2">
                                
-                                {{form.password2}}
+                                <input type="password" class="form-control shadow-none input-lg" name="password" placeholder="Password">
+                            </div>
+                            <div class="input-group mb-2">
+                               
+                                <input type="password" class="form-control shadow-none input-lg" name="password1" placeholder="Repeat Password">
                             </div>
                             <p class="text-center">People who use our service may have uploaded <br> your contact information to Instagram. Learn <br> More</p>
                             <p class="text-center">
@@ -56,17 +73,5 @@
         </div>
     </div>
 </div>
-<script>
-         
-    let form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder='Username..';
-    form_fields[2].placeholder='Email..';
-    form_fields[3].placeholder='Enter password...';
-    form_fields[4].placeholder='Re-enter Password...';
 
-
-    for (let field in form_fields){	
-        form_fields[field].className += ' form-control'
-    }
-</script>
 {% endblock %}

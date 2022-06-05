@@ -14,14 +14,14 @@
          
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-4  mb-2 mb-lg-0">
-            <a href="" class="mx-3">
+            <a href="{% url 'index' %}" class="mx-3">
                 <img src="/static/images/home.webp" width="27px" alt="">
             </a>         
               <a href="" class=" mx-3">
                   <img src="/static/images/message.webp" width="27px" alt="">
               </a>
              
-              <a href="" class="mx-3">
+              <a href="{% url 'addimage' %}" class="mx-3">
                 <img src="/static/images/boxadd.png" width="27px" alt="">
               </a> 
               <a href="" class="mx-3">
@@ -36,9 +36,9 @@
                     <img src="/static/images/user.webp" width="27px" alt="{{image.profile_img}}">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item"  href="#"> <img src="/static/images/user.webp" class="mx-3
+                  <a class="dropdown-item"  href="{% url 'profile' %}"> <img src="/static/images/user.webp" class="mx-3
                     " width="20px" alt=""> Profile</a>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="{% url 'profile' %}">
                     <img src="/static/images/Bookmark.webp" class="mx-3" alt="" width="20px">Saved</a>
                  <a class="dropdown-item" href="#"><img src="/static/images/settings.webp" class="mx-3
                     " alt="" width="20px">Settings</a>
@@ -46,7 +46,8 @@
                     " alt="" width="20px">Switch Accounts</a>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" class="mx-3
-                    " href="#">LogOut</a></li>
+                    " href="{% url 'logout' %}">LogOut</a></li>
+                   
                 </ul>
               </li>
             </ul>
