@@ -1,15 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container ">
-   
-
-    <div class="row mx-4">
-        {% for image in images %}
-        <div class="col-md-4">
-           <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}">
-           {{image.description}}
+<div class="container my-5">
+    <div class="row">
+        <div class="row mx-5 mb-4">
+        <div class="col-md-6 ms-5 ">
+           <div class="card">
+            <img src="/static/images/user.webp" width="80px" alt="{{image.profile_img}}">
+            <p>name</p>
+           </div>
         </div>
-        {% endfor %}
+    </div>
+    <div class="row mx-5">
+        <div class="col-md-6 ms-5">
+            <div class="card ">
+                <div class="div">
+                    <img src="/static/images/user.webp" width="40px" alt="{{image.profile_img}}">
+                <p class="align-center">S.c Dalmas</p> 
+                </div>       
+                {% for image in images %}
+            
+                <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}">
+                {% endfor %}
+                <div class="card-lower w-100 d-flex ">
+                    <div>
+                        <img src="/static/images/heart.png" width="27px" alt="{{image.profile_img}}">
+                    </div>
+                    <div>
+                        <img src="/static/images/message.webp" width="27px" alt="{{image.profile_img}}">
+                    </div>
+                    <div>
+                        <img src="/static/images/message.webp" width="27px" alt="{{image.profile_img}}">
+                       
+                    </div>
+                    <div class=" ms-auto ">
+                        <img src="/static/images/Bookmark.webp" width="27px" alt="{{image.profile_img}}">
+                    </div>
+                </div>
+                <div>
+                    <p><strong>5 likes</strong></p>
+                </div>
+                
+                    
+            </div>
+        </div>
+    </div>
+        
+        <div class="col-md-5">
+            <div>
+                <img src="" alt="">
+            </div>
+        </div>
+    </div>
     </div>
 </div>
 
