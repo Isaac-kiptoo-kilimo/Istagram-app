@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from PIL import Image as PILimage
+
+from .forms import createUserForm
 from .models import *
 
 
@@ -27,3 +29,19 @@ def addimage(request):
 
 def profile(request):
     return render(request,'pages/profile.html')
+
+def register(request):
+    form=createUserForm()
+    if request.method=='POST':
+        form=createUserForm(request.POST)
+        form.save()
+
+    return render(request,'accounts/register.html')
+
+def loginPage(request):
+    form=createUserForm()
+    if request.method=='POST':
+        form=createUserForm(request.POST)
+        form.save()
+
+    return render(request,'accounts/login.html')
