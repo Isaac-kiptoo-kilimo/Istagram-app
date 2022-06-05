@@ -10,4 +10,6 @@ urlpatterns=[
     path('login/',views.loginPage,name='login'),
     path('logout/',views.logoutUser,name='logout'),
     path('edit/',views.editProfile,name='edit'),
+    path('addcomment/<str:image_id>/',views.addComment,name='addcomment'),
+    path('addremovelike/<str:image_id>/',views.addremovelike,name='addremovelike'),
 ]

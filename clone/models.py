@@ -11,6 +11,7 @@ class Image(models.Model):
     image_caption=models.CharField(max_length=200)
     profile=models.ForeignKey(User, on_delete = models.CASCADE)
     likes=models.ManyToManyField(User,related_name='likes')
+    created_at=models.DateTimeField(auto_now_add=True)
     
     def save_image(self):
         self.save()
@@ -21,6 +22,9 @@ class Image(models.Model):
     def update_caption(self,id,image_caption):
         updated_caption=Image.objects.filter(id=id).update(image_caption)
         return updated_caption
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.img_name
@@ -45,7 +49,7 @@ class Profile(models.Model):
         return updated_profile
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

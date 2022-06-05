@@ -1,4 +1,3 @@
-
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image as PILimage
@@ -11,7 +10,7 @@ from django.core.exceptions import ValidationError
 
 
 # Create your views here.
-
+@login_required(login_url='login')
 def index(request):
     image=Image.objects.all()
     return render(request,'pages/index.html',{'images':image})
@@ -23,12 +22,15 @@ def addPost(request):
         image=request.FILES.get('photo')
         caption=request.POST.get('caption')
         img=Image(img_name=image.name,image=image,image_caption=caption,profile=request.user)
-
         img.save_image()
+        
     return render(request,'pages/addImage.html')
 
+
+@login_required(login_url='login')
 def profile(request):
-    return render(request,'pages/profile.html')
+    user=User.objects.all()
+    return render(request,'pages/profile.html',{'user':user})
 
 
 @unauthenticated_user
@@ -78,9 +80,33 @@ def loginPage(request):
     return render(request,'accounts/login.html')
 
 
+@login_required(login_url='login')
 def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
+@login_required(login_url='login')
 def editProfile(request):
     return render(request,'pages/editprofile.html')
+
+
+@login_required(login_url='login')
+def addComment(request,image_id):
+    if request.method=='POST':
+        img=Image.objects.get(id=image_id)
+        comment=request.POST.get('comment')
+        com=Comment.objects.create(user=request.user,img=img,comment=comment)
+        com.save()
+    return redirect(request.META['HTTP_REFERER'])
+
+
+@login_required(login_url='login')
+def addremovelike(request,image_id):
+    if request.method=='POST':
+        img=Image.objects.get(id=image_id)
+        if img.likes.contains(request.user):
+            img.likes.remove(request.user)
+        else:
+            img.likes.add(request.user)
+    return redirect(request.META['HTTP_REFERER'])
