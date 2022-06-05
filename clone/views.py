@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from PIL import Image as PILimage
-
+from django.contrib.auth import authenticate,login,logout
 from .forms import createUserForm
 from .models import *
 
@@ -36,12 +36,17 @@ def register(request):
         form=createUserForm(request.POST)
         form.save()
 
-    return render(request,'accounts/register.html')
+    return render(request,'accounts/register.html',{'form':form})
 
 def loginPage(request):
-    form=createUserForm()
-    if request.method=='POST':
-        form=createUserForm(request.POST)
-        form.save()
+    username=request.POST.get('username')
+    password=request.POST.get('password')
+    user=authenticate(request,username=username,password=password)
+    login(request,user)
 
     return render(request,'accounts/login.html')
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')

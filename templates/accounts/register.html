@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
         <div class="user_card">
@@ -48,7 +50,7 @@
     </div>
 </div>
 <script>
-                  
+         
     let form_fields = document.getElementsByTagName('input')
     form_fields[1].placeholder='Username..';
     form_fields[2].placeholder='Email..';
@@ -60,3 +62,4 @@
         form_fields[field].className += ' form-control'
     }
 </script>
+{% endblock %}
