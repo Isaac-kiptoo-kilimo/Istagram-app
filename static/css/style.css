@@ -17,3 +17,9 @@ body{
     background-color: #EFEFEF;
     border: none;
 }
+.card-comment{
+    border-bottom: 1px solid #d5cfcf;
+}
+.add-comment input{
+    border: none;
+}
