@@ -1,8 +1,9 @@
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image as PILimage
 from django.contrib.auth import authenticate,login,logout
-
+from django.contrib.auth.decorators import login_required
 from clone.decorators import unauthenticated_user
 from .models import *
 from django.contrib.auth.password_validation import validate_password
@@ -15,19 +16,14 @@ def index(request):
     image=Image.objects.all()
     return render(request,'pages/index.html',{'images':image})
 
-def addimage(request):
-    
+
+@login_required(login_url='login')
+def addPost(request): 
     if request.method=='POST':
         image=request.FILES.get('photo')
-        image_=PILimage.open(image)
-        name=request.POST.get('name')
-        size=f'{image_.width} x {image_.height}'
-        description=request.POST.get('description')
-        comments=request.POST.get('comment')
-        comment_=Comment.objects.get(id=comments)
-        likes=request.POST.get('location')
-        likes_=Likes.objects.get(id=likes)
-        img=Image(name=name,image=image,description=description,size=size,likes=likes_,comments=comment_)
+        caption=request.POST.get('caption')
+        img=Image(img_name=image.name,image=image,image_caption=caption,profile=request.user)
+
         img.save_image()
     return render(request,'pages/addImage.html')
 

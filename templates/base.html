@@ -17,6 +17,7 @@
 <body>
     {% if request.user.is_authenticated %}
     {% include 'components/navbar.html' %}
+    {% include 'components/newpost.html' %}
     {% endif %}
     {% block content %}
     {% endblock %}

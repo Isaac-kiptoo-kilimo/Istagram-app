@@ -7,15 +7,16 @@
                 <img src="/static/images/dalmas.png" width="80px" class="img-fluid  rounded-circle" alt="{{image.profile_img}}">
                 <p>name</p>
             </div>
-            <div class="card ">
+            {% for image in images %}
+            
+            <div class="card mb-3 ">
                 <div class="div">
                     <img src="/static/images/dalmas.png" width="40px" class="img-fluid  rounded-circle" alt="{{image.profile_img}}">
                 <p class="align-center">S.c Dalmas</p> 
                 </div>       
-                {% for image in images %}
-            
+               
                 <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}">
-                {% endfor %}
+                
                 <div class="card-lower w-100 d-flex ">
                     <div>
                         <img src="/static/images/heart.png" width="27px" alt="{{image.profile_img}}">
@@ -46,6 +47,7 @@
                 
                     
             </div>
+            {% endfor %}
         </div>        
         <div class="col-md-5">
             <div class="d-flex">

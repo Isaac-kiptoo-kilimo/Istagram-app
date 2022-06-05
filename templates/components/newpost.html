@@ -1,0 +1,61 @@
+  
+  <!-- Modal -->
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 >Create New Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'addpost' %}" method="POST" class="form" id="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group" id="less">
+                    <input type="file"  name="photo" class="custom-file-input" id="input">
+                </div>
+                <div class="d-none" id="more">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="" width="100%" id="output" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <p class="m-0 p-0">
+                                    <strong>{{request.user.username}}</strong>
+                                </p>
+                            </div>
+                            <div>
+                                <textarea name="caption" id=""  rows="5" class="shadow-none border-none form-control" placeholder="Write caption here"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="submit" form="post-form" class="btn shadow-none outline-none btn-primary">Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+      const output=document.querySelector('#output')
+      const input=document.querySelector('#input')
+      const more=document.querySelector('#more')
+      const less=document.querySelector('#less')
+      function preview_image(event) {
+            let reader = new FileReader();
+            reader.onload = function() {
+                output.src = reader.result;
+                input.classList.add('d-none')
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        input.addEventListener('change',(e)=>{
+            preview_image(e)
+            more.classList.remove('d-none')
+            less.classList.add('d-none')
+        })
+  </script>
