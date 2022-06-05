@@ -1,4 +1,3 @@
-
 from django.shortcuts import render
 from PIL import Image as PILimage
 from .models import *
@@ -25,3 +24,6 @@ def addimage(request):
         img=Image(name=name,image=image,description=description,size=size,likes=likes_,comments=comment_)
         img.save_image()
     return render(request,'pages/addImage.html')
+
+def profile(request):
+    return render(request,'pages/profile.html')
