@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container my-5">
-    <div class="row">
-        <div class="row mx-5 mb-4">
-        <div class="col-md-6 ms-5 ">
-           <div class="card">
-            <img src="/static/images/user.webp" width="80px" alt="{{image.profile_img}}">
-            <p>name</p>
-           </div>
-        </div>
-    </div>
+<div class="container my-5">         
     <div class="row mx-5">
         <div class="col-md-6 ms-5">
+            <div class="card mb-4">
+                <img src="/static/images/user.webp" width="80px" alt="{{image.profile_img}}">
+                <p>name</p>
+            </div>
             <div class="card ">
                 <div class="div">
                     <img src="/static/images/user.webp" width="40px" alt="{{image.profile_img}}">
@@ -51,16 +46,63 @@
                 
                     
             </div>
-        </div>
-    </div>
-        
+        </div>        
         <div class="col-md-5">
-            <div>
-                <img src="" alt="">
+            <div class="d-flex">
+                <img src="/static/images/user.webp" width="80px" alt="">
+                <h6 class="m-3">IsaacKiptook2 <br>
+                <span class="text-secondary">Isaac Kiptoo</span></h6>
+                <div class="my-3 ms-auto follow">
+                    <a href="">Switch</a>
+                </div>
+            </div>
+            <div class="d-flex ">
+                <h5>Suggestions For You</h5>
+                <p class="ms-auto">See All</p>
+            </div>
+            <div class="d-flex my-2">
+                <img src="/static/images/user.webp" width="50px" alt="">
+                <h6 class="m-1">IsaacKiptook2 <br>
+                <span class="text-secondary">Follows You</span></h6> 
+                <div class="my-1 ms-auto follow">
+                    <a href="">Follow</a>
+                </div>
+            </div>
+            <div class="d-flex my-2">
+                <img src="/static/images/user.webp" width="50px" alt="">
+                <h6 class="m-1">IsaacKiptook2 <br>
+                <span class="text-secondary">Follows You</span></h6> 
+                <div class="my-1 ms-auto follow">
+                    <a href="">Follow</a>
+                </div>
+            </div>
+            <div class="d-flex my-2">
+                <img src="/static/images/user.webp" width="50px" alt="">
+                <h6 class="m-1">IsaacKiptook2 <br>
+                <span class="text-secondary">Follows You</span></h6> 
+                <div class="my-1 ms-auto follow">
+                    <a href="">Follow</a>
+                </div>
+            </div>
+            <div class="d-flex my-2">
+                <img src="/static/images/user.webp" width="50px" alt="">
+                <h6 class="m-1">IsaacKiptook2 <br>
+                <span class="text-secondary">Follows You</span></h6> 
+                <div class="my-1 ms-auto follow">
+                    <a href="">Follow</a>
+                </div>
+            </div>
+            <div class="d-flex my-2">
+                <img src="/static/images/user.webp" width="50px" alt="">
+                <h6 class="m-1">IsaacKiptook2 <br>
+                <span class="text-secondary">Follows You</span></h6> 
+                <div class="my-1 ms-auto follow">
+                    <a href="">Follow</a>
+                </div>
             </div>
         </div>
     </div>
-    </div>
+    
 </div>
 
 {% endblock %}

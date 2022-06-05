@@ -23,3 +23,7 @@ body{
 .add-comment input{
     border: none;
 }
+.follow a{
+    text-decoration: none;
+    color: #139bf6;
+}
