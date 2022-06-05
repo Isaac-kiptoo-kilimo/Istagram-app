@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5 h-100">
-    <div class="row">
+<div class="container my-5 h-100">
+    <div class="row ">
         <div class="col-md-5 offset-md-3">
             <div class=" h-100">
                 <div class="user_card card">
                     <div class="text-center">
-                        <h3 id="form-title">Instagram</h3>
-                        <p>Sign up to see photos and <br> videos from your friends.</p>
+                        <h3 id="form-title tex-dark">Instagram</h3>
+                        <p class="text-secondary">Sign up to see photos and <br> videos from your friends.</p>
                     </div>
-                    <div class="d-flex justify-content-center form_container">
+                    <div class="d-flex justify-content-center form_container text-secondary">
         
                         <form method="POST" action="">
                             {% csrf_token %}
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-2">
                                 
                                 {{form.username}}
                             </div>
@@ -21,6 +21,7 @@
                                
                                 {{form.email}}
                             </div>
+                            
                             <div class="input-group mb-2">
                                
                                 {{form.password1}}
@@ -29,6 +30,10 @@
                                
                                 {{form.password2}}
                             </div>
+                            <p class="text-center">People who use our service may have uploaded <br> your contact information to Instagram. Learn <br> More</p>
+                            <p class="text-center">
+                                By signing up, you agree to our Terms , Data <br> Policy and Cookies Policy .
+                            </p>
         
                             <div class="d-flex justify-content-center mt-3 login_container">
                                 <input class="btn login_btn" type="submit" value="Register Account">
@@ -41,11 +46,11 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row ">
         <div class="col-md-5 offset-md-3">
-            <div class="mt-4 card">
+            <div class="mt-4 card p-4">
                 <div class="d-flex justify-content-center links">
-                    Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+                    Already have an account? <a href="{% url 'login' %}" class="ms-2">Login</a>
                 </div>
             </div>
         </div>

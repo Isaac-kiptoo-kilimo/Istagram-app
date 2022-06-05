@@ -50,3 +50,6 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+def editProfile(request):
+    return render(request,'pages/editprofile.html')
