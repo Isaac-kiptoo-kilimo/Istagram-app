@@ -32,16 +32,17 @@ class Image(models.Model):
 
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    fullname=models.CharField(max_length=100)
+    fullname=models.CharField(max_length=100,blank=True,null=True)
     profile_img=models.ImageField(upload_to='image/',default='static/images/isaac.png',null=True)
-    bio=models.TextField()
-    email_phone=models.CharField(max_length=100)
+    bio=models.TextField(blank=True,null=True)
+    email_phone=models.CharField(max_length=100,blank=True,null=True)
+    followers=models.ManyToManyField(User,related_name='followers')
+    following=models.ManyToManyField(User,related_name='following')
 
     def save_profile(self):
         self.save()
 
     def delete_profile(self):
-        self.save_profile
         self.delete()
 
     def update_profile(self,id,profile):
@@ -73,9 +74,3 @@ class Comment(models.Model):
     def __str__(self):
         return self.comment
 
-
-class FollowersCount(models.Model):
-    follower=models.CharField(max_length=1000)
-    user=models.CharField(max_length=100)
-    def __str__(self):
-        return self.user

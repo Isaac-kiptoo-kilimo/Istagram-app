@@ -9,9 +9,13 @@
             </div>
             {% for image in images %}
             
-            <div class="card mb-3 ">
+            <div class="card mb-3 ">   
                 <div class="d-flex p-2 p-md-3 align-items-center">
-                    <img src="{{image.profile.profile_img.url}}" width="40px" height="40px" class=" rounded-circle" alt="{{image.profile_img}}">
+                    {% if image.profile.profile.profile_img %}
+                    <img src="{{image.profile.profile.profile_img.url}}" width="40px" height="40px" class=" rounded-circle" alt="">
+                    {% else %}
+                    <img src="/static/images/user.webp" width="40px" height="40px" class=" rounded-circle" alt="">
+                    {% endif %}
                 <p class=" m-0 p-0 ms-2">{{image.profile.username}}</p> 
                 </div>       
                
@@ -75,9 +79,13 @@
         </div>        
         <div class="col-md-5">
             <div class="d-flex">
-                <img src="/static/images/isaac-.png" width="80px" class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-3">IsaacKiptook2 <br>
-                <span class="text-secondary">Isaac Kiptoo</span></h6>
+                {% if request.user.profile.profile_img %}
+                <img src="{{request.user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle" alt="">
+                {% else %}
+                <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
+                {% endif %}
+                <h6 class="m-3">{{request.user.username}} <br>
+                <span class="text-secondary">{{request.user.profile.fullname}}</span></h6>
                 <div class="my-3 ms-auto follow">
                     <a href="">Switch</a>
                 </div>
@@ -86,46 +94,28 @@
                 <h5>Suggestions For You</h5>
                 <p class="ms-auto">See All</p>
             </div>
+            {% for user in users %}
             <div class="d-flex my-2">
-                <img src="/static/images/fashion2.jpg" width="50px" class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-1">IsaacKiptook2 <br>
-                <span class="text-secondary">Follows You</span></h6> 
+                    {% if user.profile.profile_img %}
+                    <img src="{{user.profile.profile_img.url}}" width="40px" height="40px" class=" rounded-circle" alt="">
+                    {% else %}
+                    <img src="/static/images/user.webp" width="40px" height="40px" class=" rounded-circle" alt="">
+                    {% endif %}
+                <h6 class="m-1">{{user.username}} <br>
+                <span class="text-secondary">Suggested</span></h6> 
                 <div class="my-1 ms-auto follow">
-                    <a href="">Follow</a>
+                    <form action="{% url 'addremovefollow' user_id=user.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn shadow-none outline-none text-primary">
+                            Follow
+                        </button>
+                    </form>
                 </div>
             </div>
-            <div class="d-flex my-2">
-                <img src="/static/images/flower3.jpg" width="50px"class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-1">IsaacKiptook2 <br>
-                <span class="text-secondary">Follows You</span></h6> 
-                <div class="my-1 ms-auto follow">
-                    <a href="">Follow</a>
-                </div>
-            </div>
-            <div class="d-flex my-2">
-                <img src="/static/images/fruits2.jpg" width="50px" class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-1">IsaacKiptook2 <br>
-                <span class="text-secondary">Follows You</span></h6> 
-                <div class="my-1 ms-auto follow">
-                    <a href="">Follow</a>
-                </div>
-            </div>
-            <div class="d-flex my-2">
-                <img src="/static/images/furniture1.jpg" width="50px" class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-1">IsaacKiptook2 <br>
-                <span class="text-secondary">Follows You</span></h6> 
-                <div class="my-1 ms-auto follow">
-                    <a href="">Follow</a>
-                </div>
-            </div>
-            <div class="d-flex my-2">
-                <img src="/static/images/hero1.jpg" width="50px" class="img-fluid  rounded-circle" alt="">
-                <h6 class="m-1">IsaacKiptook2 <br>
-                <span class="text-secondary">Follows You</span></h6> 
-                <div class="my-1 ms-auto follow">
-                    <a href="">Follow</a>
-                </div>
-            </div>
+            {% endfor %}
+            {% if users|length == 0 %}
+            <p>No Suggestions today</p>
+            {% endif %}
         </div>
     </div>
     

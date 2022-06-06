@@ -2,20 +2,20 @@
 {% block content %}
 <div class="container">
     <div class="row my-4 mx-5">
-        {% for user in current_user%}
-        <div class="col-md-3 ms-5">
-            
-                <img src="{{user.profile_img.url}}" width="50%" class="img-fluid  rounded-circle" alt="">
-                <p>{{user.profile.fullname}}</p>
-                <p>{{user.profile.username}}</p>
-        </div>
-        {% endfor %}
+       
         <div class="col-md-5 m-3">
            
                 <div class="row">
                     <div class="col-md-6">
-                        <h3 class="">IsaacKiptook2 
-                        </h3>
+                        <div class="d-flex align-items-center">
+                            {% if request.user.profile.profile_img %}
+                            <img src="{{request.user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle" alt="">
+                            {% else %}
+                            <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
+                            {% endif %}
+                            <h3 class="ms-2">{{request.user.username}} 
+                            </h3>
+                        </div>
                     </div>
                    <div class="col-md-4 p-0">
                     <a href="{% url 'edit' %}"><div class="btn border-secondary ">
@@ -26,24 +26,17 @@
                         <img src="" width="40px" alt="">
                     </div>
                 </div>
-                <form action="followers" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="user" value="{{current_user}}" readonly>
-                    <input type="hidden" name="follower" value="{{user.username}}" readonly>
-                    <input type="hidden" name="value" value="follow" >
-                    <button type="submit" class="btn profile-edit-btn">
-                        Follow
-                    </button>
-                </form>
                 <div class="my-3 row ms-auto follow">
                     <div class="col-md-4">
-                        <p>0 posts</p>
+                        <p>{{request.user.image_set.count}} posts</p>
                     </div>
                    <div class="col-md-4">
-                    <p>109 Followers</p>
+                    <p> <span class="me-2">
+                        {{request.user.profile.followers.count}}
+                    </span> Followers</p>
                    </div>
                    <div class="col-md-4">
-                    <p>36 Following</p>
+                    <p>{{request.user.profile.following.count}} Following</p>
                    </div>
                 </div>
         </div>
@@ -62,41 +55,15 @@
             </h6>
            </div>
         <div class="col-md-6">
-           
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/static/images/fashion.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/water10.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/flower3.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/static/images/fruits4.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/food1.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/furniture1.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="/static/images/fruits2.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/home6.jpg" class="img-fluid" alt="">
-                </div>
-                <div class="col-md-4">
-                    <img src="/static/images/home8.jpg" class="img-fluid" alt="">
-                </div>
-            </div>
+           <div class="row">
+               {% for post in request.user.image_set.all %}
+               <div class="col-md-4">
+                   <div class="post-holder">
+                       <img src="{{post.image.url}}" width="100%" alt="">
+                   </div>
+               </div>
+               {% endfor %}
+           </div>
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-center p-5">
             <h5>Start capturing and sharing your moments.</h5>

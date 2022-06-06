@@ -14,7 +14,19 @@ from django.core.exceptions import ValidationError
 @login_required(login_url='login')
 def index(request):
     image=Image.objects.all()
-    return render(request,'pages/index.html',{'images':image})
+    users=User.objects.all()
+    count=0
+    c_users=[]
+    for user in users:
+        if user in request.user.profile.followers.all() or user in request.user.profile.following.all():
+            pass
+        else:
+            if count <= 10:
+                if user == request.user:
+                    pass
+                else:
+                    c_users.append(user)
+    return render(request,'pages/index.html',{'images':image,'users':c_users})
 
 
 @login_required(login_url='login')
@@ -32,13 +44,13 @@ def addPost(request):
 @login_required(login_url='login')
 def profile(request):
     user=User.objects.all()
-    current_user=request.GET.get('user')
-    logged_in_user=request.user.username
-    user_followers=len(FollowersCount.objects.filter(user=current_user))
-    print("number",user_followers)
-    user_following=len(FollowersCount.objects.filter(follower=current_user))
-    print(user_following)
-    return render(request,'pages/profile.html',{'current_user':current_user,})
+    # current_user=request.GET.get('user')
+    # logged_in_user=request.user.username
+    # user_followers=len(FollowersCount.objects.filter(user=current_user))
+    # print("number",user_followers)
+    # user_following=len(FollowersCount.objects.filter(follower=current_user))
+    # print(user_following)
+    return render(request,'pages/profile.html',{'user':user})
 
 
 @unauthenticated_user
@@ -120,15 +132,17 @@ def addremovelike(request,image_id):
             img.likes.add(request.user)
     return redirect(request.META['HTTP_REFERER'])
 
-
 @login_required(login_url='login')
-def followers_count(request):
+def addremovefollow(request,user_id):
     if request.method=='POST':
-        value=request.POST['value']
-        user=request.POST['user']
-        follower=request.POST['follower']
-        if value=='follow':
-            follower_cnt=FollowersCount.objects.create(follower=follower,user=user)
-            follower_cnt.save()
-            # print('followers',follower_cnt)
-        return redirect('/?user='+user)
+        user=request.user
+        new_follow=User.objects.get(id=user_id)
+        if user.profile.following.contains(new_follow):
+            user.profile.following.remove(new_follow)  
+        else:
+            user.profile.following.add(new_follow)
+        if new_follow.profile.followers.contains(user):
+            new_follow.profile.followers.remove(user)
+        else:
+            new_follow.profile.followers.add(user)
+    return redirect(request.META['HTTP_REFERER'])
