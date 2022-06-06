@@ -2,10 +2,14 @@
 {% block content %}
 <div class="container">
     <div class="row my-4 mx-5">
+        {% for user in current_user%}
         <div class="col-md-3 ms-5">
             
-                <img src="/static/images/isaac-.png" width="50%" class="img-fluid  rounded-circle" alt="">
+                <img src="{{user.profile_img.url}}" width="50%" class="img-fluid  rounded-circle" alt="">
+                <p>{{user.profile.fullname}}</p>
+                <p>{{user.profile.username}}</p>
         </div>
+        {% endfor %}
         <div class="col-md-5 m-3">
            
                 <div class="row">
@@ -19,9 +23,18 @@
                     </div></a>
                    </div>
                     <div class="col-md-2">
-                        <img src="/static/images/settings.webp" width="40px" alt="">
+                        <img src="" width="40px" alt="">
                     </div>
                 </div>
+                <form action="followers" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="user" value="{{current_user}}" readonly>
+                    <input type="hidden" name="follower" value="{{user.username}}" readonly>
+                    <input type="hidden" name="value" value="follow" >
+                    <button type="submit" class="btn profile-edit-btn">
+                        Follow
+                    </button>
+                </form>
                 <div class="my-3 row ms-auto follow">
                     <div class="col-md-4">
                         <p>0 posts</p>

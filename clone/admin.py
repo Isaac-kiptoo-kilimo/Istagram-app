@@ -7,3 +7,4 @@ from .models import *
 admin.site.register(Image)
 admin.site.register(Profile)
 admin.site.register(Comment)
+admin.site.register(FollowersCount)

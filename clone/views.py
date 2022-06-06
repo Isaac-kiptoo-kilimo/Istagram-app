@@ -1,3 +1,4 @@
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image as PILimage
@@ -23,6 +24,7 @@ def addPost(request):
         caption=request.POST.get('caption')
         img=Image(img_name=image.name,image=image,image_caption=caption,profile=request.user)
         img.save_image()
+        return redirect('index')
         
     return render(request,'pages/addImage.html')
 
@@ -30,7 +32,13 @@ def addPost(request):
 @login_required(login_url='login')
 def profile(request):
     user=User.objects.all()
-    return render(request,'pages/profile.html',{'user':user})
+    current_user=request.GET.get('user')
+    logged_in_user=request.user.username
+    user_followers=len(FollowersCount.objects.filter(user=current_user))
+    print("number",user_followers)
+    user_following=len(FollowersCount.objects.filter(follower=current_user))
+    print(user_following)
+    return render(request,'pages/profile.html',{'current_user':current_user,})
 
 
 @unauthenticated_user
@@ -88,6 +96,7 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def editProfile(request):
+
     return render(request,'pages/editprofile.html')
 
 
@@ -110,3 +119,16 @@ def addremovelike(request,image_id):
         else:
             img.likes.add(request.user)
     return redirect(request.META['HTTP_REFERER'])
+
+
+@login_required(login_url='login')
+def followers_count(request):
+    if request.method=='POST':
+        value=request.POST['value']
+        user=request.POST['user']
+        follower=request.POST['follower']
+        if value=='follow':
+            follower_cnt=FollowersCount.objects.create(follower=follower,user=user)
+            follower_cnt.save()
+            # print('followers',follower_cnt)
+        return redirect('/?user='+user)

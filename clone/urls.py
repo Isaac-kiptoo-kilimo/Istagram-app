@@ -12,4 +12,5 @@ urlpatterns=[
     path('edit/',views.editProfile,name='edit'),
     path('addcomment/<str:image_id>/',views.addComment,name='addcomment'),
     path('addremovelike/<str:image_id>/',views.addremovelike,name='addremovelike'),
+    path('profile/followers',views.followers_count,name='followers'),
 ]
