@@ -4,6 +4,9 @@ from pathlib import Path
 import dj_database_url
 import django_heroku
 from decouple import config,Csv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,7 +48,11 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 DEBUG = True
 # ALLOWED_HOSTS=['127.0.0.1']
 
-
+cloudinary.config( 
+  cloud_name="dneuvrivu", 
+  api_key="826278747664774", 
+  api_secret="KbPsHVMLjIJZdQNPMxTcnfn97Ww" 
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -56,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
