@@ -151,11 +151,11 @@ def addremovefollow(request,user_id):
 
 class SearchResultsView(ListView):
     model = User
-    template_name = "search_results.html"
+    template_name = "search.html"
 
     def get_queryset(self):  # new
-        query = self.request.GET.get("q")
+        query = self.request.GET.get("query")
         object_list = User.objects.filter(
-            Q(name__icontains=query) | Q(state__icontains=query)
+            Q(username__icontains=query)
         )
         return object_list
