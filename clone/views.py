@@ -1,4 +1,3 @@
-
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from PIL import Image as PILimage
@@ -8,6 +7,8 @@ from clone.decorators import unauthenticated_user
 from .models import *
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from django.db.models import Q 
+from django.views.generic import TemplateView, ListView
 
 
 # Create your views here.
@@ -146,3 +147,15 @@ def addremovefollow(request,user_id):
         else:
             new_follow.profile.followers.add(user)
     return redirect(request.META['HTTP_REFERER'])
+
+
+class SearchResultsView(ListView):
+    model = User
+    template_name = "search_results.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = User.objects.filter(
+            Q(name__icontains=query) | Q(state__icontains=query)
+        )
+        return object_list
