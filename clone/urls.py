@@ -15,5 +15,6 @@ urlpatterns=[
     path('addremovelike/<str:image_id>/',views.addremovelike,name='addremovelike'),
     path('addremovefollow/<str:user_id>/',views.addremovefollow,name='addremovefollow'),
     path("search/", SearchResultsView.as_view(), name="search_results"),
-   
+#    path('edit_profile_page/<str:pk>/',EditProfilePageView.as_view(),name='edit_profile_page')
+    # path('edit_profile_page/<str:id>/',views.edit_profile_page,name='edit_profile_page')
 ]

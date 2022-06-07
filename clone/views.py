@@ -159,3 +159,10 @@ class SearchResultsView(ListView):
             Q(username__icontains=query)
         )
         return object_list
+
+
+# class EditProfilePageView(generic.UpdateView):
+#     model: Profile
+#     template_name= 'pages/editprofile.html'
+#     fields= ['fullname','profile_img','bio','email_phone']
+#     success_url=reverse_lazy('profile')
