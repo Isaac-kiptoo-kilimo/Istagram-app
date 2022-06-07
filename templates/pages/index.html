@@ -3,9 +3,14 @@
 <div class="container my-5">         
     <div class="row mx-5">
         <div class="col-md-6 ms-5">
-            <div class="card mb-4">
+            <div class="card mb-4 d-flex p-3 flex-row">
+                {% if user.profile.profile_img %}
+                    <img src="{{user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle mx-3" alt="">
+                    {% else %}
+                    <img src="/static/images/user.webp" width="40px" height="40px" class=" rounded-circle" alt="">
+                    {% endif %}
                 <img src="/static/images/dalmas.png" width="80px" class="img-fluid  rounded-circle" alt="{{image.profile_img}}">
-                <p>name</p>
+                
             </div>
             {% for image in images %}
             
