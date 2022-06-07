@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container h-100 mt-5">
-    <div class="row">
+    <div class="row my-5">
         <div class="col-md-10 offset-md-1">
            <div class="row">
             <div class="col-md-6 d-flex ms-3">
@@ -54,11 +54,11 @@
                                 </form>
                                 
                             </div>
-                            <div>
-                                <p>OR</p>
-                                <div class="fab fa-facebook"></div>
-                                <span>Log in with Facebook</span>
-                                <div>
+                            <div class="text-center ">
+                                <p class="text-center text-secondary">OR</p>
+                                <i class="fa-brands fa-facebook-square text-primary"></i>
+                                <span class="text-primary">Log in with Facebook</span>
+                                <div class="text-primary">
                                     <a href="#">Forgot password?</a>
                                 </div>
                             </div>
@@ -79,10 +79,19 @@
                     
                         </div>
                     </div>
+                    <div class="text-center mt-4">
+                        <p class="me-5">Get the app.</p>
+                        <div class="d-flex">
+                            <img src="/static/images/playstore.png" class="me-2" width="50%" alt="">
+                            <img src="/static/images/googleapp.png" class="" width="50%" alt="">
+                        </div>
+                    </div>
                 </div>
+               
             </div>
            </div>
         </div>
     </div>
+    
 </div>
 {% endblock %}
