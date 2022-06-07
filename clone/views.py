@@ -9,6 +9,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db.models import Q 
 from django.views.generic import TemplateView, ListView
+from .forms import ProfileForm
 
 
 # Create your views here.
@@ -109,9 +110,31 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def editProfile(request):
+    profiles= Profile.objects.get(user=request.user)
 
-    return render(request,'pages/editprofile.html')
+    # images = request.user.profile.images.all()
+    if request.method == 'POST':
+        # user_form = UpdateUserForm(request.POST, instance=request.user)
+        prof_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if  prof_form.is_valid():
+            # user_form.save()
+            prof_form.save()
+            return redirect('profile')
+            
+            # return HttpResponseRedirect(request.path_info)
+    else:
+        # user_form = UpdateUserForm(instance=request.user)
+        prof_form = ProfileForm(instance=request.user.profile)
+             
+    context={
+        # 'user_form': user_form,
+        'prof_form': prof_form,
+        'profiles': profiles
+          
+        }
+    return render(request,'pages/editprofile.html',context)
 
+ 
 
 @login_required(login_url='login')
 def addComment(request,image_id):

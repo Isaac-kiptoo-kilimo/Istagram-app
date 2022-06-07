@@ -80,9 +80,10 @@
         <div class="col-md-5">
             <div class="d-flex">
                 {% if image.profile.profile.profile_img %}
-                <img src="{{request.user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle" alt="">
-                {% else %}
                 <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
+                {% else %}
+                
+                <img src="{{request.user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle" alt="">
                 {% endif %}
                 <h6 class="m-3">{{request.user.username}} <br>
                 <span class="text-secondary">{{request.user.profile.fullname}}</span></h6>
