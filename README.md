@@ -18,18 +18,36 @@ This is a web application written in Django. It is a clone of instagram where us
 
 
 ## Behaviour Driven Development (BDD)
-
-1. View post/image
-
-|Behaviour 	           |    Input 	                 |       Output          |
-|----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-| upon signing up ang logging in successfully the user will be able to view his post  | location| post and images will be displayed on user timeline  | 
-
-2. Search by Category 
+1. Register
 
 |Behaviour 	           |    Input 	                 |       Output          |
 |----------------------------------------------|:-----------------------------------:|-----------------------------:|       
-| Enter a search category on the search form   | searchTerm| Images that belong to that category are displayed  | 
+| A new user must sign up to be able to post and view other people posts and images will be displayed on user timeline  | 
+
+
+1. Login
+
+|Behaviour 	           |    Input 	                 |       Output          |
+|----------------------------------------------|:-----------------------------------:|-----------------------------:|       
+| upon signing up successfully the user will be able to be redirected to home page where he/she be able to post and view other people posts and images | 
+
+1. update profile
+
+|Behaviour 	           |    Input 	                 |       Output          |
+|----------------------------------------------|:-----------------------------------:|-----------------------------:|       
+| upon signing up successfully the user will be able to be redirected to home page where he/she be able to post and view other people posts and images,the user can also update his profile | 
+
+1. logout
+
+|Behaviour 	           |    Input 	                 |       Output          |
+|----------------------------------------------|:-----------------------------------:|-----------------------------:|       
+| upon signing up ang logging in successfully the user will be able to post and view other people posts and images will be displayed on user timeline  and he can be able to logout after navigating to the dropdown | 
+
+2. Search by fullname 
+
+|Behaviour 	           |    Input 	                 |       Output          |
+|----------------------------------------------|:-----------------------------------:|-----------------------------:|       
+| Enter a search name on the search form   | searchTerm| names that belong to that category are displayed  | 
 
 
 3. Admin View
