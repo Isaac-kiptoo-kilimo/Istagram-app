@@ -73,7 +73,9 @@ def register(request):
                     user.save()
                     name = fullname
                     email = email_phone
-                    send_welcome_email(name,email)
+                    send_email=send_welcome_email(name,email)
+                    send_email.fail_silently_=True
+                    send_email.send()
                     messages.success(request,'Account created succesfully')
                     return redirect('login')
                 except ValidationError as e:
