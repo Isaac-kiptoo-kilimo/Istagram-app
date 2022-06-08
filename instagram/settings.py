@@ -52,7 +52,7 @@ cloudinary.config(
   cloud_name="dneuvrivu", 
   api_key="826278747664774", 
   api_secret="KbPsHVMLjIJZdQNPMxTcnfn97Ww",
-  CLOUDINARY_URL='cloudinary://826278747664774:KbPsHVMLjIJZdQNPMxTcnfn97Ww@dneuvrivu'
+ 
 )
 # Application definition
 

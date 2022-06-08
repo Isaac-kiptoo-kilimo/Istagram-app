@@ -46,9 +46,7 @@ def addPost(request):
 @login_required(login_url='login')
 def profile(request):
     user=User.objects.all()
-    # current_user=request.GET.get('user')
-    # logged_in_user=request.user.username
-    # user_followers=len(FollowersCount.objects.filter(user=current_user))
+    
     # print("number",user_followers)
     # user_following=len(FollowersCount.objects.filter(follower=current_user))
     # print(user_following)

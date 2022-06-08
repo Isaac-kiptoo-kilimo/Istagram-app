@@ -56,12 +56,16 @@
                         <i class="fa-regular fa-bookmark fa-2x"></i>
                     </div>
                 </div>
+                <div class="p-2 p-md-3">
+                    <p>{{image.image_caption}}</p>
+                </div>
                 <div class="card-comment p-2 p-md-3">
                     <p class="p-0 m-0"><strong>{{image.likes.count}} likes</strong></p>
                    <div class="text-secondary">
                     <p class="p-0 m-0">{{image.comment_set.count}} view comment</p>
                     <p class="p-0 m-0 text-uppercase">{{image.created_at | timesince  }}</p>
                    </div>
+                   
                 </div>
                 <div class="d-flex align-items-center add-comment p-3">
                     <span style="width:10%"><i class="fa-regular fa-face-smile"></i></span>

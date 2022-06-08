@@ -3,15 +3,17 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
     img_name=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='image/',null=True)
+    # image=models.CloudinaryField(upload_to='image/',null=True)
     image_caption=models.CharField(max_length=200)
     profile=models.ForeignKey(User, on_delete = models.CASCADE)
     likes=models.ManyToManyField(User,related_name='likes')
     created_at=models.DateTimeField(auto_now_add=True)
+    image=CloudinaryField('image',blank=True,null=True)
     
     def save_image(self):
         self.save()
@@ -33,7 +35,8 @@ class Image(models.Model):
 class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     fullname=models.CharField(max_length=100,blank=True,null=True)
-    profile_img=models.ImageField(upload_to='image/',default='static/images/isaac.png',null=True)
+    profile_img=CloudinaryField('image',blank=True,null=True)
+    # profile_img=models.ImageField(upload_to='image/',default='static/images/isaac.png',null=True)
     bio=models.TextField(blank=True,null=True)
     email_phone=models.CharField(max_length=100,blank=True,null=True)
     followers=models.ManyToManyField(User,related_name='followers')
