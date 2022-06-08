@@ -112,16 +112,16 @@ def logoutUser(request):
 def editProfile(request):
     profiles= Profile.objects.get(user=request.user)
 
-    # images = request.user.profile.images.all()
+  
     if request.method == 'POST':
-        # user_form = UpdateUserForm(request.POST, instance=request.user)
+       
         prof_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if  prof_form.is_valid():
-            # user_form.save()
+            
             prof_form.save()
             return redirect('profile')
             
-            # return HttpResponseRedirect(request.path_info)
+            
     else:
         # user_form = UpdateUserForm(instance=request.user)
         prof_form = ProfileForm(instance=request.user.profile)
@@ -143,6 +143,7 @@ def addComment(request,image_id):
         comment=request.POST.get('comment')
         com=Comment.objects.create(user=request.user,img=img,comment=comment)
         com.save()
+        print('comment',comment)
     return redirect(request.META['HTTP_REFERER'])
 
 

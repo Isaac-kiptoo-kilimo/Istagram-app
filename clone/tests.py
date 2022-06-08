@@ -4,19 +4,26 @@ from django.test import TestCase
 
 from django.test import TestCase
 
-from .models import Image,Category,Location
-import datetime as dt
+from .models import *
 
 # Create your tests here.
 class ImageTestClass(TestCase):
     def setUp(self):
-        self.location = Location(place='Eldoret')
-        self.location.save_location()
+        self.profile = Profile(fullname='isaac kiptoo',profile_img='isaac.png',bio='am i a tm',email_phone='isaac@gmail')
+        self.profile.save_profile()
 
-        self.category = Category(category='Fruits')
-        self.category.save_category()
+#  img_name=models.CharField(max_length=100)
+#     image=models.ImageField(upload_to='image/',null=True)
+#     image_caption=models.CharField(max_length=200)
+#     profile=models.ForeignKey(User, on_delete = models.CASCADE)
+#     likes=models.ManyToManyField(User,related_name='likes')
+#     created_at=models.DateTimeField(auto_now_add=True)
+    
 
-        self.initial_test= Image(name = 'home', image='isaac.png', description='the image is in good condition',size='320px by 210px',pub_date='25-11-2021',location=self.location,category=self.category)
+        self.comment = Comment(category='Fruits')
+        self.comment.save_comment()
+
+        self.initial_test= Image(img_name='isaac.png',image='isaac.png',user='isaac',name = 'home',  description='the image is in good condition',size='320px by 210px',pub_date='25-11-2021',profile=self.profile,comment=self.comment)
 # Testing  instance
     def test_instance(self):
         self.assertTrue(isinstance(self.initial_test,Image))
@@ -40,67 +47,67 @@ class ImageTestClass(TestCase):
         new_image = Image.objects.filter(image='images/test.jpg')
         self.assertTrue(len(new_image)>0)
 
-    def test_search_by_location(self):
+    def test_search_by_name(self):
         self.initial_test.save_image()
-        images = self.initial_test.search_by_location(search_term='Eldoret')
+        images = self.initial_test.search_by_name(search_term='isaac')
         self.assertTrue(len(images) ==0)
 
-    def test_search_by_category(self):
-        self.initial_test.save_image()
-        images = self.initial_test.search_by_category(search_term='Fruits')
-        self.assertTrue(len(images)== 0)
+    # def test_search_by_category(self):
+    #     self.initial_test.save_image()
+    #     images = self.initial_test.search_by_category(search_term='Fruits')
+    #     self.assertTrue(len(images)== 0)
 
     def tearDown(self):
         Image.objects.all().delete()
-        Location.objects.all().delete()
-        Category.objects.all().delete()
+        Profile.objects.all().delete()
+        Comment.objects.all().delete()
 
-class CategoryTestClass(TestCase):
+class CommentestClass(TestCase):
 
     # Set up method
     def setUp(self):
-        self.category = Category(category='Fruits')
-        self.category.save_category()
+        self.comment = comment=('Fruits')
+        self.comment.save_comment()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.category, Category))
+        self.assertTrue(isinstance(self.comment, Comment))
 
-    def test_save_category(self):
-        self.category.save_category()
-        categories = Category.objects.all()
-        self.assertTrue(len(categories) > 0)
+    def test_save_comment(self):
+        self.comment.save_comment()
+        comments = Comment.objects.all()
+        self.assertTrue(len(comments) > 0)
 
-    def test_delete_category(self):
-        self.category.delete_category()
-        category = Category.objects.all()
-        self.assertTrue(len(category) == 0)
+    def test_delete_comment(self):
+        self.comment.delete_comment()
+        comment = Comment.objects.all()
+        self.assertTrue(len(comment) == 0)
 
 
    
     
-class LocationTestClass(TestCase):
+class ProfileTestClass(TestCase):
 
     # Set up method
     def setUp(self):
-        self.location = Location(place='Eldoret')
-        self.location.save_location()
+        self.profile = Profile(place='Eldoret')
+        self.profile.save_profile()
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.location, Location))
+        self.assertTrue(isinstance(self.profile, Profile))
 
-    def test_save_location(self):
-        self.location.save_location()
-        locations = Location.objects.all()
-        self.assertTrue(len(locations) > 0)
+    def test_save_profile(self):
+        self.profile.save_profile()
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles) > 0)
 
-    def test_delete_location(self):
-        self.location.delete_location()
-        locations = Location.objects.all()
-        self.assertTrue(len(locations) == 0)
+    def test_delete_profile(self):
+        self.profile.delete_profile()
+        profiless = Profile.objects.all()
+        self.assertTrue(len(profiless) == 0)
 
-    def test_get_locations(self):
-        self.location.save_location()
-        locations = Location.get_locations()
-        self.assertTrue(len(locations) > 0)
+    # def test_get_locations(self):
+    #     self.location.save_location()
+    #     locations = Location.get_locations()
+    #     self.assertTrue(len(locations) > 0)
 
 

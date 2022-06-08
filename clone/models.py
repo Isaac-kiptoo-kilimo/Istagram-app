@@ -70,7 +70,13 @@ class Comment(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     img=models.ForeignKey(Image,on_delete=models.CASCADE)
     comment=models.TextField()
+
+    def save_comment(self):
+        self.save()
     
+    def delete_comment(self):
+        self.delete()
+
     def __str__(self):
         return self.comment
 
