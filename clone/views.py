@@ -77,8 +77,7 @@ def register(request):
                     email = email_phone
                     
                     send_email=EmailMessage(
-                        name,
-                        [email]
+                        name,email
                     )
                     send_email.fail_silently=True
                     send_email.send()
