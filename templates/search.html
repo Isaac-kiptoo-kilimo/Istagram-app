@@ -1,9 +1,19 @@
-<h1>Search Results</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+  <div class="card m-4 p-2">
+    <h1>Search Results</h1>
+    <ul>
+      {% for user in object_list %}
+        <p>
+          <a href="#">{{ user.username }}</a>
+          {{ user.fullname }}
+        </p>
+        
+      {% endfor %}
+    </ul>
+  </div>
 
-<ul>
-  {% for user in object_list %}
-    <li>
-      {{ user.username }}
-    </li>
-  {% endfor %}
-</ul>
+</div>
+
+{% endblock %}
