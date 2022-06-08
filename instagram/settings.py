@@ -61,6 +61,13 @@ cloudinary.config(
   api_secret="KbPsHVMLjIJZdQNPMxTcnfn97Ww",
  
 )
+
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='testisaac67@gmail.com'
+EMAIL_HOST_PASSWORD='jlyjtwmdwrjrtuul'
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -9,13 +9,7 @@ class ImageTestClass(TestCase):
         self.profile = Profile(fullname='isaac kiptoo',profile_img='isaac.png',bio='am i a tm',email_phone='isaac@gmail',likes='2')
         self.profile.save_profile()
 
-# ) user=models.OneToOneField(User,on_delete=models.CASCADE)
-#     fullname=models.CharField(max_length=100,blank=True,null=True)
-#     profile_img=models.ImageField(upload_to='image/',default='static/images/isaac.png',null=True)
-#     bio=models.TextField(blank=True,null=True)
-#     email_phone=models.CharField(max_length=100,blank=True,null=True)
-#     followers=models.ManyToManyField(User,related_name='followers')
-#     following=models.ManyToManyField(User,related_name='following')
+
     
 
         self.comment = Comment(comment='Fruits')
