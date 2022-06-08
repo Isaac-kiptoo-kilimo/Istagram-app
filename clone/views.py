@@ -71,10 +71,10 @@ def register(request):
                     user.profile.email_phone=email_phone
                     user.profile.save()
                     user.save()
-                    name = fullname
-                    email = email_phone
-                    send_welcome_email(name,email)
-                    messages.success(request,'Account created succesfully')
+                    # name = fullname
+                    # email = email_phone
+                    # send_welcome_email(name,email)
+                    # messages.success(request,'Account created succesfully')
                     return redirect('login')
                 except ValidationError as e:
                     messages.error(request,'Password error {e} ')
