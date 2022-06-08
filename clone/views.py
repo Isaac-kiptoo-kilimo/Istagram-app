@@ -77,9 +77,7 @@ def register(request):
                     email = email_phone
                     
                     send_email=EmailMessage(
-                        'Welcome email',
-                        f'Hi there{name}!\n,Thank you for joining us.This is you message:',
-                        settings.EMAIL_HOST_USER,
+                        name,
                         [email]
                     )
                     send_email.fail_silently=True
