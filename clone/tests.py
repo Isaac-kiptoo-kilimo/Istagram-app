@@ -1,29 +1,27 @@
 from django.test import TestCase
 
-# Create your tests here.
-
-from django.test import TestCase
 
 from .models import *
 
 # Create your tests here.
 class ImageTestClass(TestCase):
     def setUp(self):
-        self.profile = Profile(fullname='isaac kiptoo',profile_img='isaac.png',bio='am i a tm',email_phone='isaac@gmail')
+        self.profile = Profile(fullname='isaac kiptoo',profile_img='isaac.png',bio='am i a tm',email_phone='isaac@gmail',likes='2')
         self.profile.save_profile()
 
-#  img_name=models.CharField(max_length=100)
-#     image=models.ImageField(upload_to='image/',null=True)
-#     image_caption=models.CharField(max_length=200)
-#     profile=models.ForeignKey(User, on_delete = models.CASCADE)
-#     likes=models.ManyToManyField(User,related_name='likes')
-#     created_at=models.DateTimeField(auto_now_add=True)
+# ) user=models.OneToOneField(User,on_delete=models.CASCADE)
+#     fullname=models.CharField(max_length=100,blank=True,null=True)
+#     profile_img=models.ImageField(upload_to='image/',default='static/images/isaac.png',null=True)
+#     bio=models.TextField(blank=True,null=True)
+#     email_phone=models.CharField(max_length=100,blank=True,null=True)
+#     followers=models.ManyToManyField(User,related_name='followers')
+#     following=models.ManyToManyField(User,related_name='following')
     
 
-        self.comment = Comment(category='Fruits')
+        self.comment = Comment(comment='Fruits')
         self.comment.save_comment()
 
-        self.initial_test= Image(img_name='isaac.png',image='isaac.png',user='isaac',name = 'home',  description='the image is in good condition',size='320px by 210px',pub_date='25-11-2021',profile=self.profile,comment=self.comment)
+        self.initial_test= Image(img_name='isaac.png',image='isaac.png',user='isaac',name = 'home',  description='the image is in good condition',pub_date='25-11-2021',profile=self.profile,comment=self.comment)
 # Testing  instance
     def test_instance(self):
         self.assertTrue(isinstance(self.initial_test,Image))
@@ -89,7 +87,7 @@ class ProfileTestClass(TestCase):
 
     # Set up method
     def setUp(self):
-        self.profile = Profile(place='Eldoret')
+        self.profile = Profile(fullname='isaac kiptoo',profile_img='isaac.png',bio='am i a tm',email_phone='isaac@gmail',followers='2')
         self.profile.save_profile()
 
     def test_instance(self):
