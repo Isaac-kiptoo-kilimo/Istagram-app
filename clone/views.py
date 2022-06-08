@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from PIL import Image as PILimage
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from clone.decorators import unauthenticated_user
+from clone.email import send_welcome_email
 from .models import *
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
@@ -71,6 +71,9 @@ def register(request):
                     user.profile.email_phone=email_phone
                     user.profile.save()
                     user.save()
+                    name = fullname
+                    email = email_phone
+                    send_welcome_email(name,email)
                     messages.success(request,'Account created succesfully')
                     return redirect('login')
                 except ValidationError as e:
