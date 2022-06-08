@@ -24,7 +24,7 @@
                 <p class=" m-0 p-0 ms-2">{{image.profile.username}}</p> 
                 </div>       
                
-                <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}">
+               <a href="{% url 'detail' %}"> <img src="{{image.image.url}}" class="img-fluid" alt=" {{image.image}}"></a>
                 
                 <div class="card-lower p-2 p-md-3 w-100 d-flex ">
                     <div class="d-flex align-items-center">

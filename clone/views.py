@@ -1,5 +1,3 @@
-from email.message import EmailMessage
-from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login,logout
@@ -75,13 +73,7 @@ def register(request):
                     user.save()
                     name = fullname
                     email = email_phone
-                    
-                    send_email=EmailMessage(
-                        name,email
-                    )
-                    send_email.fail_silently=True
-                    send_email.send()
-
+                    send_welcome_email(name,email)
                     messages.success(request,'Account created succesfully')
                     return redirect('login')
                 except ValidationError as e:
@@ -182,6 +174,11 @@ def addremovefollow(request,user_id):
     return redirect(request.META['HTTP_REFERER'])
 
 
+@login_required(login_url='login')
+def detail(request):
+    images=Image.objects.all()
+    return render(request,'pages/detail.html',{'images':images})
+
 class SearchResultsView(ListView):
     model = User
     template_name = "search.html"
@@ -194,8 +191,3 @@ class SearchResultsView(ListView):
         return object_list
 
 
-# class EditProfilePageView(generic.UpdateView):
-#     model: Profile
-#     template_name= 'pages/editprofile.html'
-#     fields= ['fullname','profile_img','bio','email_phone']
-#     success_url=reverse_lazy('profile')
