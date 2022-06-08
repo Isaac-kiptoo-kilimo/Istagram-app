@@ -1,3 +1,5 @@
+from email.message import EmailMessage
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login,logout
@@ -73,9 +75,16 @@ def register(request):
                     user.save()
                     name = fullname
                     email = email_phone
-                    send_email=send_welcome_email(name,email)
-                    send_email.fail_silently_=True
+                    
+                    send_email=EmailMessage(
+                        'Welcome email',
+                        f'Hi there{name}!\n,Thank you for joining us.This is you message:',
+                        settings.EMAIL_HOST_USER,
+                        [email]
+                    )
+                    send_email.fail_silently=True
                     send_email.send()
+
                     messages.success(request,'Account created succesfully')
                     return redirect('login')
                 except ValidationError as e:
