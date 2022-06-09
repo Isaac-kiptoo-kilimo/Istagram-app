@@ -7,7 +7,7 @@
                 {% if user.profile.profile_img %}
                     <img src="{{user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle mx-3" alt="">
                     {% else %}
-                    <img src="/static/images/user.webp" width="40px" height="40px" class=" rounded-circle" alt="">
+                    <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
                     {% endif %}
                 <img src="/static/images/dalmas.png" width="80px" class="img-fluid  rounded-circle" alt="{{image.profile_img}}">
                 
@@ -47,7 +47,7 @@
                         {% endif %}
                         
                        
-                        <i class="fa-regular fa-comment fa-2x"></i>
+                        <i class="fa-regular fa-comment fa-2x mx-2" ></i>
                         <i class="fa-regular fa-paper-plane fa-2x"></i>
 
                     </div>
@@ -57,12 +57,13 @@
                     </div>
                 </div>
                 <div class="p-2 p-md-3">
-                    <p>{{image.image_caption}}</p>
+                    <p><span class="caption-span">Caption:</span>{{image.image_caption}}</p>
                 </div>
                 <div class="card-comment p-2 p-md-3">
                     <p class="p-0 m-0"><strong>{{image.likes.count}} likes</strong></p>
                    <div class="text-secondary">
                     <p class="p-0 m-0">{{image.comment_set.count}} view comment</p>
+                  
                     <p class="p-0 m-0 text-uppercase">{{image.created_at | timesince  }}</p>
                    </div>
                    
@@ -88,12 +89,11 @@
         </div>        
         <div class="col-md-5">
             <div class="d-flex">
-                {% if image.profile.profile.profile_img %}
-                <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
-                {% else %}
-                
-                <img src="{{request.user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle" alt="">
-                {% endif %}
+                {% if user.profile.profile_img %}
+                    <img src="{{user.profile.profile_img.url}}" width="80px" height="80px" class=" rounded-circle mx-3" alt="">
+                    {% else %}
+                    <img src="/static/images/user.webp" width="80px" height="80px" class=" rounded-circle" alt="">
+                    {% endif %}
                 <h6 class="m-3">{{request.user.username}} <br>
                 <span class="text-secondary">{{request.user.profile.fullname}}</span></h6>
                 <div class="my-3 ms-auto follow">
