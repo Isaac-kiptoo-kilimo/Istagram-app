@@ -115,7 +115,7 @@ Copyright © 2022
 # project layout
 
 ### Homepage
-<!-- ![gallaryup](./static/images/galleryup-home.png) -->
+![gallaryup](./static/images/instapage.png)
 
 ### Admin 
-<!-- ![gallaryup](./static/images/galleryup-admin.png) -->
+![gallaryup](./static/images/loginpage.png)
